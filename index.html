@@ -21,12 +21,12 @@
     <style>
       html.lenis { height: auto; }
       .lenis.lenis-smooth { scroll-behavior: auto; }
-      body { background-color: #121212; }
+      body { background-color: #121212; transition: background-color 0.5s ease; }
       .hero_content-top, .hero_content-bottom { opacity: 0; transform: translateZ(-2rem); }
       .navbar { transition: transform 0.5s ease, background-color 0.5s ease; }
       .navbar.is-scrolled { transform: translateY(-100%); }
       
-      /* ===== [NEW] Reversible Theme Styles ===== */
+      /* Reversible Theme Styles */
       #theme-wipe-overlay {
         position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
         background-color: white; transform: scale(0); transform-origin: bottom right;
@@ -34,19 +34,20 @@
         transition: transform 1.5s cubic-bezier(0.7, 0, 0.3, 1);
       }
       #theme-wipe-overlay.active { transform: scale(2.5); }
-      #theme-wipe-overlay.reverse { background-color: #121212; }
-
+      
       body.light-theme { background-color: white; }
       body.light-theme .page-wrapper { background-color: transparent; }
-      body.light-theme, body.light-theme p, body.light-theme h1, body.light-theme h2, body.light-theme h3, body.light-theme .subheading, body.light-theme .button_text { color: #333; }
+      body.light-theme, body.light-theme p, body.light-theme h1, body.light-theme h2, body.light-theme h3, body.light-theme .subheading, body.light-theme .button_text, body.light-theme .numbers_text { color: #333; }
       body.light-theme .eyebrow-heading, body.light-theme .navbar_link { color: #888; }
       body.light-theme .menu-toggle_line { background-color: #333; }
       body.light-theme .navbar.has-background { background-color: rgba(255,255,255,0.8); backdrop-filter: blur(10px); }
-      body.light-theme .hero_aurora-inner { background-image: linear-gradient(180deg, rgba(255, 197, 210, 0.9), rgba(235, 126, 161, 0.4) 100%); }
+      body.light-theme .hero_aurora-inner, body.light-theme .footer_aurora .hero_aurora-inner { background-image: linear-gradient(180deg, rgba(255, 197, 210, 0.9), rgba(235, 126, 161, 0.4) 100%); }
       body.light-theme [radial-border]::after { background: radial-gradient( ellipse 80% 80% at 50% 20%, rgba(255, 220, 220, 0.9), rgba(231, 120, 151, 0.5), rgba(231, 120, 151, 0) ); }
       body.light-theme [radial-border="right"]::after { background: radial-gradient( ellipse 80% 80% at 95% 20%, rgba(255, 220, 220, 0.9), rgba(231, 120, 151, 0.5), rgba(231, 120, 151, 0) ); }
       body.light-theme [radial-border="left"]::after { background: radial-gradient( ellipse 80% 80% at 5% 20%, rgba(255, 220, 220, 0.9), rgba(231, 120, 151, 0.5), rgba(231, 120, 151, 0) ); }
       body.light-theme [glow-border="card"]::before { background: radial-gradient( circle 10rem at var(--cursor-x) var(--cursor-y), rgba(255, 220, 220, 1), rgba(231, 120, 151, 0.5), rgba(231, 120, 151, 0) ); }
+      body.light-theme .button { border-color: #ddd; }
+      body.light-theme .petal { background-color: #d96284; }
 
       /* Heart Burst Animation */
       #heart-burst-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 9999; pointer-events: none; }
@@ -83,15 +84,17 @@
       @keyframes footerAurora { 0%, 100% { transform: rotateZ(-10deg); } 50% { transform: rotateZ(10deg); } }
       .footer_aurora.is-blured { animation: footerAurora 6s infinite ease-in-out; }
     </style></div>
+    <nav data-lenis-prevent="" class="menu">...</nav>
+    <nav class="navbar">...</nav>
     <main class="content-wrapper">
-      <section class="section is-hero">...</section>
-      <div class="section">...</div>
-      <div class="section">...</div>
-      <div id="comparison" class="section"><div class="sticky-layout">...</div></div>
-      <div id="metrics" class="section">...</div>
-      <div id="guide" class="section">...</div>
-      <div id="options" class="section">...</div>
-      <div class="section is-footer"><div class="container"><div class="footer_wrapper"><div class="footer_top"><div class="vertical-gap-16"><div class="vertical-gap-8 align-left"><p class="eyebrow-heading">dive into the future</p><h2>Start our journey</h2><h2 class="footer_heading">Now!</h2></div><div class="max-width-360"><p>In order to start this beautiful adventure together, all she has to do is say yes to me being by her side forever. Be the first, be my favorite, be my always — step into the future with me.</p></div></div><button type="button" class="button" id="play-proposal-button"><div class="button_inner"><p>Play The Music</p></div><div class="glow"></div></button></div><div class="footer_bottom"><p>Created by:</p><a href="https://t.me/nikkton6" target="_blank" class="eyebrow-heading">N I K</a></div></div><div class="footer_aurora is-blured"><div class="hero_aurora-inner"></div></div><div class="footer_aurora"><div class="hero_aurora-inner"></div></div></div></div>
+        <section class="section is-hero"><div class="container is-hero"><div class="hero_content-wrapper"><div class="hero_content-top"><h1 class="hero_heading">Meet My Future Wife</h1></div><div class="hero_content-bottom"><p>Scroll Down</p><div class="hero_lottie" data-w-id="41748e0b-e75a-7f0f-f252-9fcbe0bc18dc" data-animation-type="lottie" data-src="https://cdn.prod.website-files.com/639cdae01920e5582ef8287e/639cdae01920e5f379f8289b_lottieflow-scroll-down-04-1-ffffff-easey.json" data-loop="1" data-direction="1" data-autoplay="1" data-is-ix2-target="0" data-renderer="svg" data-default-duration="1.625" data-duration="2"></div></div></div></div><div class="hero_aurora"><div class="hero_aurora-inner"></div></div><div class="hero_aurora is-blured"><div class="hero_aurora-inner"></div></div><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 622 705" fill="none" class="hero_light"><path d="M311 0L621.037 704.25H0.962891L311 0Z" fill="currentColor"></path></svg><canvas id="canvasOne" class="canvas"></canvas></section>
+        <div class="section"><div class="container"><div class="headline-wrapper"><div class="overflow-hidden"><div class="headline_circle"><div class="headline_circle-inner"></div><div class="headline_circle-overlay"></div></div></div><div class="vertical-gap-32"><div class="vertical-gap-16"><div class="vertical-gap-8"><p data-animation="text-reveal" class="eyebrow-heading">Overview</p><h2 data-animation="text-reveal">Who she is?</h2></div><div class="max-width-720"><p data-animation="text-reveal">She is not just a person I met, she is the chapter that rewrote my entire story. She is the kind of girl who can make a room feel alive simply by walking into it. She talks too much when she is excited and goes completely silent when she is upset, and both versions of her are beautiful. She has this strange ability to make me laugh even when I have no reason to. She gets annoyed at small things, but her anger never lasts longer than her love. She is the kind of person who will fight with me over silly reasons and still be the first one to check if I had my dinner. She is sensitive, sometimes more than the world deserves, but that is what makes her heart rare. She has a way of turning even the most ordinary evening into a memory worth keeping. She is dramatic in ways that only make her more lovable. She forgets things easily but never forgets how to make me feel special. She is messy in her habits yet organized in her emotions. She can be stubborn, but it is the kind of stubbornness that shows she cares deeply. She is silly in the purest way, the kind of silly that makes life lighter.</p></div></div><button type="button" class="button"><div class="button_inner"><p>Get Started</p></div><div class="glow"></div></button></div></div></div></div>
+        <div class="section"><div class="container"><div class="headline-wrapper"><div class="vertical-gap-8"><p data-animation="text-reveal" class="eyebrow-heading">Benefits</p><h2 data-animation="text-reveal">What makes her unique?</h2></div></div><div glow-border="wrapper" class="benefit-cards_wrapper"><div radial-border="right" glow-border="card" class="benefit-card is-left"><div class="benefit-card_inner"><h3 data-animation="text-reveal" class="heading-style-h3-small">Low Weight</h3><p data-animation="text-reveal">The weight of her is relatively low compared to other ones. Average weight of her is about 46kg.</p></div></div><div radial-border="left" glow-border="card" class="benefit-card is-right"><div class="benefit-card_inner"><h3 data-animation="text-reveal" class="heading-style-h3-small">Worldwide Height</h3><p data-animation="text-reveal">She’s so short, the world feels taller everywhere she go, airports use her as carry-on luggage, kids look down on her, and even Google Maps can’t find her without zooming in.</p></div></div><div radial-border="right" glow-border="card" class="benefit-card is-left"><div class="benefit-card_inner"><h3 data-animation="text-reveal" class="heading-style-h3-small">Sleeping Side</h3><p data-animation="text-reveal">Behold the rare sight: a human panda! Blanket fur, pillow bamboo, snore melody… gracefully ignoring life. If napping were a sport, gold medal, little bear. Keep living the dream!</p></div></div><div radial-border="left" glow-border="card" class="benefit-card is-right"><div class="benefit-card_inner"><h3 data-animation="text-reveal" class="heading-style-h3-small">Juicy Thing</h3><p data-animation="text-reveal">Eyes like blueberries, hair like tangled cotton candy, nose like baby tomato, lips sweet as litchi but words sour like lemon juice. A full fruit salad with extra drama topping!</p></div></div><div radial-border="right" glow-border="card" class="benefit-card is-left"><div class="benefit-card_inner"><h3 data-animation="text-reveal" class="heading-style-h3-small">Things she does</h3><p data-animation="text-reveal">Our Lady Has Bravery In her Inner Soul ,Does Those Things That no One In The Universe Could Do So.</p></div></div><div radial-border="left" glow-border="card" class="benefit-card is-right"><div class="benefit-card_inner"><h3 data-animation="text-reveal" class="heading-style-h3-small">Fairy Tail</h3><p data-animation="text-reveal">In a tiny kingdom, lived a brave princess who fought hot seasons like dragons, chased bees at rooftop as playing game, and ruled her pillow fort — the bravest, silliest queen of bedtime battles.</p></div></div></div></div></div>
+        <div id="comparison" class="section"><div class="sticky-layout"><div class="container"><div class="headline-wrapper"><div class="vertical-gap-8"><p data-animation="text-reveal" class="eyebrow-heading">comparison</p><h2 data-animation="text-reveal">My Princess vs You deserve Better<br/>Future Investment</h2></div></div><div class="petals-layout"><div class="petals-row is-top"><div class="petal"><div class="subheading">They/Them</div><h3>Deserve Better</h3></div><div class="petal inverse"><div class="subheading">She/Her</div><h3>Princess</h3></div></div><div class="petals-circle"><div class="petals-circle_inner"><p class="petals-circle_text">Accessibility</p><p class="petals-circle_text">Transactions</p><p class="petals-circle_text">Security</p><p class="petals-circle_text">Inclusivity</p><p class="petals-circle_text">Bias</p></div></div><div class="petals-row is-bottom"><div class="petal inverse"><div class="petal-texts_wrapper"><p class="petal-text">Corporate within certain hours</p><p class="petal-text">Very high convinces fees</p><p class="petal-text">They can be hacked by Anyone</p><p class="petal-text">Time taking</p><p class="petal-text">Can’t Able To Think About them.</p></div></div><div class="petal"><div class="petal-texts_wrapper"><p class="petal-text">Corporate 24/7 without interruption</p><p class="petal-text">fast understanding and cheap fees</p><p class="petal-text">she’s already hacked by me.</p><p class="petal-text">Already Taken OurMy time.</p><p class="petal-text">Thinking About Her As Always Day or Night Always comes in mind</p></div></div></div></div></div></div></div>
+        <div id="metrics" class="section"><div class="container"><div class="headline-wrapper"><div class="vertical-gap-8"><p data-animation="text-reveal" class="eyebrow-heading">Metrics</p><h2 data-animation="text-reveal">What does the numbers say</h2></div></div><div class="numbers_wrapper"><div class="numbers_column"><div data-animation="text-reveal" class="numbers_text">4.09+ Mln</div><p data-animation="text-reveal">Women are in the World</p></div><div class="numbers_column"><div data-animation="text-reveal" class="numbers_text">~ONLY 1</div><p data-animation="text-reveal">I have eye on</p></div><div class="numbers_column"><div data-animation="text-reveal" class="numbers_text">4.09 MLN $+</div><p data-animation="text-reveal">She’s for me</p></div><div class="numbers_line-wrapper"><div class="numbers_line"></div><div class="numbers_line-overlay"></div></div><div class="numbers_line-wrapper is-right"><div class="numbers_line"></div><div class="numbers_line-overlay"></div></div></div></div></div>
+        <div id="guide" class="section"><div class="horizontal-sticky"><div class="container"><div class="headline-wrapper"><div class="vertical-gap-8"><p data-animation="text-reveal" class="eyebrow-heading">Wanna know</p><h2 data-animation="text-reveal">How good she’s</h2></div></div><div class="stages_wrapper"><div class="stages_track"><div class="stages_progress"><div class="stages_progress-fill"></div><div class="stages_progress-section"><div class="stages_progress-circle is-1"><div class="stages_progress-circle_inner"></div></div></div><div class="stages_progress-section"><div class="stages_progress-circle is-2"><div class="stages_progress-circle_inner"></div></div></div><div class="stages_progress-section"><div class="stages_progress-circle is-3"><div class="stages_progress-circle_inner"></div></div></div><div class="stages_progress-section"><div class="stages_progress-circle is-4"><div class="stages_progress-circle_inner"></div></div></div><div class="stages_progress-overaly"></div></div><div class="stages_section"><h3>Inform yourself</h3><p>She is not just any girl — she’s the one who changes everything. Before you love her, understand her heart, her dreams, and her little fears. She deserves someone who sees her completely and still chooses her every day.</p></div><div class="stages_section"><h3>Choose your way</h3><p>Choose to hold her hand on good days and wipe her tears on bad ones. Choose her laughter over the noise of the world. Choose her again and again, even when life gets hard.</p></div><div class="stages_section"><h3>Spend Time With Her</h3><p>Time with her is not just time — it’s a memory being built. Listen to her stories, watch the stars with her, make her feel safe. Every second with her is worth more than anything else.</p></div><div class="stages_section"><h3>Get Her Love</h3><p>Her love is not just given, it’s a treasure. Earn it with honesty, protect it with loyalty, and cherish it like it’s the best thing you’ve ever found. Because it is.</p></div></div></div></div></div></div>
+        <div id="options" class="section"><div class="container"><div class="petals-grid"><div class="petals_headline"><div class="vertical-gap-8 align-right"><p data-animation="text-reveal" class="eyebrow-heading">Options</p<h2 data-animation="text-reveal">WHO CAN LOVE HER</h2><div class="max-width-480"><p data-animation="text-reveal">With the magic that is her, everyone will find a way to love her — but I know the best way is mine.</p></div></div></div><div class="petals-grid_item is-1"><div class="petals_grid-item_inner"><h3 data-animation="text-reveal">Individuals</h3><p data-animation="text-reveal">She deserves someone who texts her first, listens to her rants, and makes her feel special every day.</p></div></div><div class="petals-grid_item is-2"><div class="petals_grid_item_inner is-inverse"><h3 data-animation="text-reveal">Friends</h3><p data-animation="text-reveal">They can make her laugh, but only I can make her feel truly loved.</p></div></div><div class="petals-grid_item is-3"><div class="petals_grid-item_inner"><h3 data-animation="text-reveal">Me</h3><p data-animation="text-reveal">I choose to love her the loudest, cheer for her the hardest, and stay by her side the longest.</p></div></div></div></div></div>
+        <div class="section is-footer"><div class="container"><div class="footer_wrapper"><div class="footer_top"><div class="vertical-gap-16"><div class="vertical-gap-8 align-left"><p class="eyebrow-heading">dive into the future</p><h2>Start our journey</h2><h2 class="footer_heading">Now!</h2></div><div class="max-width-360"><p>In order to start this beautiful adventure together, all she has to do is say yes to me being by her side forever. Be the first, be my favorite, be my always — step into the future with me.</p></div></div><button type="button" class="button" id="play-proposal-button"><div class="button_inner"><p>Play The Music</p></div><div class="glow"></div></button></div><div class="footer_bottom"><p>Created by:</p><a href="https://t.me/nikkton6" target="_blank" class="eyebrow-heading">N I K</a></div></div><div class="footer_aurora is-blured"><div class="hero_aurora-inner"></div></div><div class="footer_aurora"><div class="hero_aurora-inner"></div></div></div></div>
     </main>
 </div>
 
@@ -120,7 +123,7 @@
     document.querySelectorAll('[data-animation="text-reveal"]').forEach(el => { gsap.fromTo(el, { opacity: 0 }, { opacity: 1, ease: "none", scrollTrigger: { trigger: el, start: "top 85%", end: "top 50%", scrub: true } }); });
     gsap.to(".headline_circle-overlay", { y: "100%", ease: "none", scrollTrigger: { trigger: ".headline_circle", start: "top 90%", end: "bottom 40%", scrub: true } });
     
-    // [RESTORED] Comparison Section Animation
+    // [RESTORED & VERIFIED] Comparison Section Animation
     const comparisonSection = document.querySelector("#comparison");
     if (comparisonSection) {
         const rotations = 4, degrees = 360 * rotations;
@@ -137,7 +140,7 @@
         }
     }
 
-    // [FULLY REBUILT] Final Button, Theme, Animation, and Lyrics Logic
+    // [FINAL & FIXED] Button, Theme, Animation, and Lyrics Logic
     const proposalButton = document.getElementById("play-proposal-button");
     const buttonText = proposalButton.querySelector("p");
     const song = document.getElementById("proposal-song");
@@ -155,7 +158,7 @@
       { time: 40.4, text: "the ocean's colors on your face." },
       { time: 43.6, text: "I'll leave my heart with your air," },
       { time: 46.9, text: "so let me fly with you." },
-      { time: 69.0, text: "Will you be forever with me?" }, // 1:09
+      { time: 69.0, text: "Will you be forever with me?" }, // 1:09 in song
       { time: 82.5, text: "My love will always stay by you." },
       { time: 88.5, text: "I'll keep it safe so don't you worry a thing." },
       { time: 92.6, text: "I'll tell you I love you more." },
@@ -179,18 +182,24 @@
             song.pause();
             buttonText.textContent = "Play The Music";
             
-            wipeOverlay.classList.remove('reverse'); // Ensure bg is white for next wipe out
-            wipeOverlay.classList.remove('active');
+            // Change content back to dark theme first
             body.classList.remove("light-theme");
+            
+            // Animate wipe to reveal the dark theme
+            wipeOverlay.classList.remove('active');
             
         } else {
             // PLAY LOGIC
             song.play();
             buttonText.textContent = "Pause The Music";
             
-            wipeOverlay.classList.remove('reverse');
+            // Animate wipe to cover the screen
             wipeOverlay.classList.add('active');
-            body.classList.add("light-theme");
+            
+            // Change to light theme after wipe has started
+            setTimeout(() => {
+                body.classList.add("light-theme");
+            }, 500); // 0.5s delay
 
             if (!animationTriggered) {
                 triggerHeartBurst();

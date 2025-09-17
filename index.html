@@ -42,6 +42,7 @@
       [radial-border="left"]::after { background: radial-gradient( ellipse 80% 80% at 5% 20%, rgba(224, 203, 224, 0.9), rgba(76, 69, 165, 0.5), rgba(76, 69, 165, 0) ); }
       [glow-border="card"]::before { content: ""; pointer-events: none; user-select: none; -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); mask-composite: xor; -webkit-mask-composite: xor; mask-composite: exclude; position: absolute; inset: 0; padding: 2px; border-radius: inherit; opacity: 0; will-change: background, opacity; transition: opacity 400ms ease; background: radial-gradient( circle 10rem at var(--cursor-x) var(--cursor-y), rgba(224, 203, 224, 1), rgba(76, 69, 165, 0.5), rgba(76, 69, 165, 0) ); z-index: 0; }
       [glow-border="wrapper"]:hover [glow-border="card"]::before { opacity: 1; }
+      .petal-texts_wrapper .petal-text, .petals-circle_inner .petals-circle_text { opacity: 0;}
       .petal-texts_wrapper .petal-text:first-child, .petals-circle_inner .petals-circle_text:first-child { opacity: 1; }
       @keyframes pulse { 0%, 100% { opacity: 0.2; } 50% { opacity: 0.3; } }
       .hero_light { animation: pulse 6s infinite ease-in-out; }
@@ -74,145 +75,30 @@
 <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.27/bundled/lenis.min.js"></script> 
 <script>
   "use strict";
-
   const lenis = new Lenis({ lerp: 0.15, wheelMultiplier: 0.9, infinite: false, gestureOrientation: "vertical", normalizeWheel: false, smoothTouch: false });
   function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
   requestAnimationFrame(raf);
+  $("[data-lenis-toggle]").on("click", function () { $(this).toggleClass("stop-scroll"); $(this).hasClass("stop-scroll") ? lenis.stop() : lenis.start(); });
 
-  $("[data-lenis-toggle]").on("click", function () {
-    $(this).toggleClass("stop-scroll");
-    if ($(this).hasClass("stop-scroll")) {
-      lenis.stop();
-    } else {
-      lenis.start();
-    }
-  });
-
-  const menu = document.querySelector(".menu");
-  const toggleBtn = document.querySelector(".menu-toggle");
-  const menuLines = document.querySelectorAll(".menu-toggle_line");
-  const menuLinks = document.querySelectorAll(".menu_link");
-  const menuButton = document.querySelector(".menu_bottom .button");
-
+  const menu = document.querySelector(".menu"), toggleBtn = document.querySelector(".menu-toggle"), menuLines = document.querySelectorAll(".menu-toggle_line"), menuLinks = document.querySelectorAll(".menu_link"), menuButton = document.querySelector(".menu_bottom .button");
   gsap.set(menu, { y: "-100%", opacity: 0, pointerEvents: "none" });
   gsap.set(menuLinks, { y: "100%" });
   gsap.set(menuButton, { width: "0%" });
-
-  const lineHeight = menuLines[0].offsetHeight;
-  const moveY = lineHeight + 4;
-
-  const menuTl = gsap.timeline({
-    paused: true,
-    reversed: true,
-    defaults: { ease: "power3.inOut" }
-  });
-
-  menuTl
-    .set(menu, { opacity: 1, pointerEvents: "auto" })
-    .to(menu, { y: "0%", duration: 1 })
-    .to(menuLines[0], { y: moveY, rotate: 45, duration: 0.5 }, "<")
-    .to(menuLines[1], { opacity: 0, duration: 0.3 }, "<")
-    .to(menuLines[2], { y: -moveY, rotate: -45, duration: 0.5 }, "<")
-    .to(menuLinks, { y: "0%", duration: 0.5, ease: "power3.out", stagger: 0.08 }, "-=0.2")
-    .to(menuButton, { width: "100%", duration: 0.7, ease: "power4.inOut" }, "<+0.2");
-
-  toggleBtn.addEventListener("click", () => {
-    menuTl.reversed() ? menuTl.play() : menuTl.reverse();
-  });
-
-  menuLinks.forEach(link => {
-    link.addEventListener("click", () => {
-      if (!menuTl.reversed()) {
-        toggleBtn.click();
-      }
-    });
-  });
+  const lineHeight = menuLines[0].offsetHeight, moveY = lineHeight + 4, menuTl = gsap.timeline({ paused: true, reversed: true, defaults: { ease: "power3.inOut" } });
+  menuTl.set(menu, { opacity: 1, pointerEvents: "auto" }).to(menu, { y: "0%", duration: 1 }).to(menuLines[0], { y: moveY, rotate: 45, duration: .5 }, "<").to(menuLines[1], { opacity: 0, duration: .3 }, "<").to(menuLines[2], { y: -moveY, rotate: -45, duration: .5 }, "<").to(menuLinks, { y: "0%", duration: .5, ease: "power3.out", stagger: .08 }, "-=0.2").to(menuButton, { width: "100%", duration: .7, ease: "power4.inOut" }, "<+0.2");
+  toggleBtn.addEventListener("click", () => { menuTl.reversed() ? menuTl.play() : menuTl.reverse(); });
+  menuLinks.forEach(link => { link.addEventListener("click", () => { !menuTl.reversed() && toggleBtn.click(); }); });
 
   document.addEventListener("DOMContentLoaded", function () {
     if (window.innerWidth <= 991) return;
-
-    const canvasOne = document.getElementById("canvasOne");
-    const W = window.innerWidth;
-    const H = window.innerHeight;
+    const canvasOne = document.getElementById("canvasOne"), W = window.innerWidth, H = window.innerHeight;
     let ctx = canvasOne.getContext("2d");
-    canvasOne.width = W;
-    canvasOne.height = H;
-    ctx.globalCompositeOperation = "lighter";
-
-    const particles = [];
-    const particleCount = 200;
-    const particleSize = 2;
-
-    function randomNorm(mean, stdev) {
-      return Math.abs(Math.round((Math.random() * 2 - 1 + Math.random() * 2 - 1 + Math.random() * 2 - 1) * stdev) + mean);
-    }
-
-    function Particle() {
-      this.h = 0;
-      this.s = 0;
-      this.l = parseInt(40 * Math.random() + 40, 10);
-      this.a = 0.3 * Math.random() + 0.2;
-      this.color = `hsla(${this.h},${this.s}%,${this.l}%,${this.a})`;
-      this.shadowcolor = `hsla(${this.h},${this.s}%,${this.l}%,${Math.max(this.a - 0.2, 0.05)})`;
-      this.x = Math.random() * W;
-      this.y = Math.random() * H;
-      this.direction = {
-        x: -1 + Math.random() * 2,
-        y: -1 + Math.random() * 2
-      };
-      this.radius = randomNorm(0, particleSize);
-      this.scale = 0.7 * Math.random() + 0.5;
-      this.rotation = (Math.PI / 4) * Math.random();
-      this.vx = (2 * Math.random() + 4) * 0.01 * this.radius;
-      this.vy = (2 * Math.random() + 4) * 0.01 * this.radius;
-      this.valpha = 0.01 * Math.random() - 0.02;
-
-      this.move = function () {
-        this.x += this.vx * this.direction.x;
-        this.y += this.vy * this.direction.y;
-        this.rotation += this.valpha;
-      };
-
-      this.changeDirection = function (axis) {
-        this.direction[axis] *= -1;
-        this.valpha *= -1;
-      };
-
-      this.boundaryCheck = function () {
-        if (this.x >= W * 1.2 || this.x <= -W * 0.2) this.changeDirection("x");
-        if (this.y >= H * 1.2 || this.y <= -H * 0.2) this.changeDirection("y");
-      };
-
-      this.draw = function () {
-        ctx.save();
-        ctx.translate(this.x, this.y);
-        ctx.rotate(this.rotation);
-        ctx.scale(1, this.scale);
-        const grad = ctx.createRadialGradient(0, 0, 0, 0, 0, this.radius);
-        grad.addColorStop(0, this.shadowcolor);
-        grad.addColorStop(1, this.color);
-        ctx.beginPath();
-        ctx.fillStyle = grad;
-        ctx.arc(0, 0, this.radius, 0, Math.PI * 2, false);
-        ctx.fill();
-        ctx.restore();
-      };
-    }
-
-    for (let i = 0; i < particleCount; i++) {
-      particles.push(new Particle());
-    }
-
-    function animateParticles() {
-      ctx.clearRect(0, 0, W, H);
-      particles.forEach(p => {
-        p.move();
-        p.boundaryCheck();
-        p.draw();
-      });
-      requestAnimationFrame(animateParticles);
-    }
-
+    canvasOne.width = W, canvasOne.height = H, ctx.globalCompositeOperation = "lighter";
+    const particles = [], particleCount = 200, particleSize = 2;
+    function randomNorm(mean, stdev) { return Math.abs(Math.round((Math.random() * 2 - 1 + Math.random() * 2 - 1 + Math.random() * 2 - 1) * stdev) + mean); }
+    function Particle() { this.h = 0, this.s = 0, this.l = parseInt(40 * Math.random() + 40, 10), this.a = .3 * Math.random() + .2, this.color = `hsla(${this.h},${this.s}%,${this.l}%,${this.a})`, this.shadowcolor = `hsla(${this.h},${this.s}%,${this.l}%,${Math.max(this.a - .2, .05)})`, this.x = Math.random() * W, this.y = Math.random() * H, this.direction = { x: -1 + 2 * Math.random(), y: -1 + 2 * Math.random() }, this.radius = randomNorm(0, particleSize), this.scale = .7 * Math.random() + .5, this.rotation = Math.PI / 4 * Math.random(), this.vx = (2 * Math.random() + 4) * .01 * this.radius, this.vy = (2 * Math.random() + 4) * .01 * this.radius, this.valpha = .01 * Math.random() - .02, this.move = function () { this.x += this.vx * this.direction.x, this.y += this.vy * this.direction.y, this.rotation += this.valpha; }, this.changeDirection = function (axis) { this.direction[axis] *= -1, this.valpha *= -1; }, this.boundaryCheck = function () { this.x >= 1.2 * W || this.x <= -.2 * W && this.changeDirection("x"), this.y >= 1.2 * H || this.y <= -.2 * H && this.changeDirection("y"); }, this.draw = function () { ctx.save(), ctx.translate(this.x, this.y), ctx.rotate(this.rotation), ctx.scale(1, this.scale); const grad = ctx.createRadialGradient(0, 0, 0, 0, 0, this.radius); grad.addColorStop(0, this.shadowcolor), grad.addColorStop(1, this.color), ctx.beginPath(), ctx.fillStyle = grad, ctx.arc(0, 0, this.radius, 0, 2 * Math.PI, !1), ctx.fill(), ctx.restore(); }; }
+    for (let i = 0; i < particleCount; i++) particles.push(new Particle);
+    function animateParticles() { ctx.clearRect(0, 0, W, H), particles.forEach(p => { p.move(), p.boundaryCheck(), p.draw(); }), requestAnimationFrame(animateParticles); }
     animateParticles();
   });
 </script>
@@ -220,83 +106,44 @@
   document.addEventListener("DOMContentLoaded", () => {
     gsap.registerPlugin(ScrollTrigger);
 
+    // ========== Hero Section Animation ========== //
     const tl = gsap.timeline();
-    tl.fromTo(".hero_content-top", 
-        { opacity: 0, z: "-2rem" }, 
-        { opacity: 1, z: "0rem", duration: 1.5, ease: "power2.out" }, 
-        0.5
-    );
-    tl.fromTo(".hero_content-bottom", 
-        { opacity: 0 }, 
-        { opacity: 1, duration: 1.5, ease: "power2.out" }, 
-        "-=1"
-    );
+    tl.to(".hero_content-top", { opacity: 1, z: "0rem", duration: 1.5, ease: "power2.out" }, 0.5)
+      .to(".hero_content-bottom", { opacity: 1, duration: 1.5, ease: "power2.out" }, "-=1");
 
+    // ========== Text Reveal on Scroll ========== //
     document.querySelectorAll('[data-animation="text-reveal"]').forEach(el => {
       gsap.fromTo(el, { opacity: 0 }, {
-        opacity: 1,
-        ease: "none",
-        scrollTrigger: {
-          trigger: el,
-          start: "top 85%",
-          end: "top 50%",
-          scrub: true,
-        }
+        opacity: 1, ease: "none",
+        scrollTrigger: { trigger: el, start: "top 85%", end: "top 50%", scrub: true }
       });
     });
 
+    // ========== Circle Overlay Animation ========== //
     gsap.to(".headline_circle-overlay", {
-      y: "100%",
-      ease: "none",
-      scrollTrigger: {
-        trigger: ".headline_circle",
-        start: "top 90%",
-        end: "bottom 40%",
-        scrub: true,
-      }
+      y: "100%", ease: "none",
+      scrollTrigger: { trigger: ".headline_circle", start: "top 90%", end: "bottom 40%", scrub: true }
     });
 
+    // ========== Benefit Cards Scroll In ========== //
     if (window.innerWidth >= 991) {
       document.querySelectorAll('.benefit-card').forEach(card => {
-        const isLeft = card.classList.contains('is-left');
-        const xStart = isLeft ? '-2rem' : '2rem';
+        const isLeft = card.classList.contains('is-left'), xStart = isLeft ? '-2rem' : '2rem';
         gsap.from(card, {
-          x: xStart,
-          y: '2rem',
-          opacity: 0,
-          ease: 'power2.out',
-          scrollTrigger: {
-            trigger: card,
-            start: 'top 80%',
-            end: 'top 30%',
-            scrub: 1.5
-          }
+          x: xStart, y: '2rem', opacity: 0, ease: 'power2.out',
+          scrollTrigger: { trigger: card, start: 'top 80%', end: 'top 30%', scrub: 1.5 }
         });
       });
     }
-
+    
+    // ========== Navbar Hide on Scroll & Background Change ========== //
     const navbar = document.querySelector(".navbar");
     if (navbar) {
-      ScrollTrigger.create({
-        start: 50,
-        end: 'max',
-        onUpdate: self => {
-            if (self.direction === 1) {
-                navbar.classList.add("is-scrolled");
-            } else {
-                navbar.classList.remove("is-scrolled");
-            }
-        }
-      });
-      ScrollTrigger.create({
-          trigger: ".section.is-hero",
-          start: "bottom top",
-          end: "bottom top",
-          onEnter: () => navbar.classList.add("has-background"),
-          onLeaveBack: () => navbar.classList.remove("has-background")
-      });
+        ScrollTrigger.create({ start: 50, end: 'max', onUpdate: self => { self.direction === 1 ? navbar.classList.add("is-scrolled") : navbar.classList.remove("is-scrolled") } });
+        ScrollTrigger.create({ trigger: ".section.is-hero", start: "bottom top", end: "bottom top", onEnter: () => navbar.classList.add("has-background"), onLeaveBack: () => navbar.classList.remove("has-background") });
     }
 
+    // ========== Petals Animation (Rotation, Text, and Layout) ========== //
     const comparisonSection = document.querySelector("#comparison");
     if (comparisonSection) {
       const rotations = 4;
@@ -331,33 +178,54 @@
           trigger: comparisonSection,
           start: "top top",
           end: "bottom bottom",
-          scrub: true
+          scrub: 1 // Using a scrub value can help smooth things out
         }
       });
-
+      
       const circleTexts = gsap.utils.toArray(".petals-circle_text");
       const petalTextWrappers = document.querySelectorAll(".petal-texts_wrapper");
       const numItems = circleTexts.length;
-      const duration = 1 / numItems;
 
-      for (let i = 0; i < numItems; i++) {
-        const startTime = i * duration;
+      circleTexts.forEach((text, i) => {
+        // Position for the start of the current slide's animation
+        const startTime = i / numItems;
+        // Position for the end of the current slide's animation
+        const endTime = (i + 1) / numItems;
+
+        // Fade in the current item
+        textTimeline.fromTo(text, 
+            { opacity: 0, scale: 0.8 }, 
+            { opacity: 1, scale: 1, ease: "power1.out" }, 
+            startTime
+        );
         
-        textTimeline.to(circleTexts[i], { opacity: 0, scale: 0.8, ease: "power1.in" }, startTime);
-        if (i < numItems - 1) {
-          textTimeline.fromTo(circleTexts[i+1], { opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1, ease: "power1.out" }, startTime + duration / 2);
+        // Fade out the current item before the next one starts
+        if (i < numItems - 1) { // Don't fade out the last item
+            textTimeline.to(text, 
+                { opacity: 0, scale: 0.8, ease: "power1.in" }, 
+                endTime - (0.1 / numItems) // Start fading out a bit before the end of its slot
+            );
         }
 
+        // Animate corresponding petal texts
         petalTextWrappers.forEach(wrapper => {
-          const texts = gsap.utils.toArray(wrapper.querySelectorAll('.petal-text'));
-          if (texts[i]) {
-            textTimeline.to(texts[i], { opacity: 0, y: "-1rem", ease: "power1.in" }, startTime);
-          }
-          if (texts[i+1]) {
-            textTimeline.fromTo(texts[i+1], { opacity: 0, y: "1rem" }, { opacity: 1, y: "0rem", ease: "power1.out" }, startTime + duration / 2);
-          }
+            const petalTexts = gsap.utils.toArray(wrapper.querySelectorAll('.petal-text'));
+            if(petalTexts[i]) {
+                textTimeline.fromTo(petalTexts[i], 
+                    { opacity: 0, y: "1rem" },
+                    { opacity: 1, y: "0rem", ease: "power1.out" }, 
+                    startTime
+                );
+                if (i < numItems - 1) {
+                    textTimeline.to(petalTexts[i], 
+                        { opacity: 0, y: "-1rem", ease: "power1.in" }, 
+                        endTime - (0.1 / numItems)
+                    );
+                }
+            }
         });
-      }
+      });
+
 
       const petalsFadeIn = gsap.timeline({
         scrollTrigger: {
@@ -372,22 +240,22 @@
         .from(".petals-row.is-top .petal:last-child", { opacity: 0, x: "5rem", y: "-2rem" }, "<")
         .from(".petals-row.is-bottom .petal:first-child", { opacity: 0, x: "-5rem", y: "2rem" }, "<")
         .from(".petals-row.is-bottom .petal:last-child", { opacity: 0, x: "5rem", y: "2rem" }, "<");
-      
+        
+      // THIS IS THE MISSING PIECE OF LOGIC TO FADE THE PETALS OUT
       const petalsFadeOut = gsap.timeline({
         scrollTrigger: {
           trigger: comparisonSection,
           scrub: true,
-          start: "bottom 90%",
+          start: "bottom 90%", // Start fading when 90% of the section is scrolled
           end: "bottom center"
         }
       });
       petalsFadeOut
-        .to(".petals-row.is-top .petal:first-child", { opacity: 0, x: "-5rem", y: "-2rem" })
-        .to(".petals-row.is-top .petal:last-child", { opacity: 0, x: "5rem", y: "-2rem" }, "<")
-        .to(".petals-row.is-bottom .petal:first-child", { opacity: 0, x: "-5rem", y: "2rem" }, "<")
-        .to(".petals-row.is-bottom .petal:last-child", { opacity: 0, x: "5rem", y: "2rem" }, "<");
+        .to(".petals-layout", { opacity: 0 });
     }
 
+
+    // ========== Stages Scroll + Guide Section Scroll Animations ========== //
     const guideSection = document.querySelector("#guide");
     if (guideSection) {
       const isMobile = window.innerWidth <= 991;
@@ -439,6 +307,7 @@
       });
     }
       
+    // ========== Glow Button & Card Animation ========== //
     document.querySelectorAll('[glow-border="wrapper"]').forEach(wrapper => {
       wrapper.addEventListener("mousemove", function (event) {
         this.querySelectorAll('[glow-border="card"]').forEach(card => {

@@ -1,17 +1,13 @@
-// Assuming you have a GSAP animation setup here
+// Existing GSAP setup code
 
-// Pinning the #comparison section during wheel animation
-
-// Relevant GSAP animation block
-
-gsap.to('.petals-circle', {
-    // Existing properties
-    // ...
-    scrollTrigger: {
-        trigger: '#comparison',
-        start: 'top top',
-        end: 'bottom top',
-        pin: '#comparison', // Adding pin to lock in place
-        scrub: true,
-    }
+// Add the ScrollTrigger code to pin the #comparison section
+ScrollTrigger.create({
+  trigger: "#comparison",
+  start: "top top",
+  end: "bottom top",
+  pin: true,
+  anticipatePin: 1,
+  scrub: true
 });
+
+// Remove any broken lines like `pin: '#comparison'` or `sticky.style.height = 'px';`. (Ensure these lines are removed if present)

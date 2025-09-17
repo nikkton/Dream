@@ -42,8 +42,11 @@
       [radial-border="left"]::after { background: radial-gradient( ellipse 80% 80% at 5% 20%, rgba(224, 203, 224, 0.9), rgba(76, 69, 165, 0.5), rgba(76, 69, 165, 0) ); }
       [glow-border="card"]::before { content: ""; pointer-events: none; user-select: none; -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); mask-composite: xor; -webkit-mask-composite: xor; mask-composite: exclude; position: absolute; inset: 0; padding: 2px; border-radius: inherit; opacity: 0; will-change: background, opacity; transition: opacity 400ms ease; background: radial-gradient( circle 10rem at var(--cursor-x) var(--cursor-y), rgba(224, 203, 224, 1), rgba(76, 69, 165, 0.5), rgba(76, 69, 165, 0) ); z-index: 0; }
       [glow-border="wrapper"]:hover [glow-border="card"]::before { opacity: 1; }
-      .petal-texts_wrapper .petal-text, .petals-circle_inner .petals-circle_text { opacity: 0;}
-      .petal-texts_wrapper .petal-text:first-child, .petals-circle_inner .petals-circle_text:first-child { opacity: 1; }
+      
+      /* Set initial states for the comparison text animation */
+      .petals-circle_text, .petal-text { opacity: 0; }
+      .petals-circle_text:first-child, .petal-texts_wrapper .petal-text:first-child { opacity: 1; }
+
       @keyframes pulse { 0%, 100% { opacity: 0.2; } 50% { opacity: 0.3; } }
       .hero_light { animation: pulse 6s infinite ease-in-out; }
       @media screen and (max-width: 768px) { @keyframes pulse { 0%, 100% { opacity: 0.1; } 50% { opacity: 0.2; } } .hero_light { animation: pulse 6s infinite ease-in-out; } }
@@ -61,7 +64,7 @@
         <div id="comparison" class="section"><div class="sticky-layout"><div class="container"><div class="headline-wrapper"><div class="vertical-gap-8"><p data-animation="text-reveal" class="eyebrow-heading">comparison</p><h2 data-animation="text-reveal">My Princess vs You deserve Better<br/>Future Investment</h2></div></div><div class="petals-layout"><div class="petals-row is-top"><div class="petal"><div class="subheading">They/Them</div><h3>Deserve Better</h3></div><div class="petal inverse"><div class="subheading">She/Her</div><h3>Princess</h3></div></div><div class="petals-circle"><div class="petals-circle_inner"><p class="petals-circle_text">Accessibility</p><p class="petals-circle_text">Transactions</p><p class="petals-circle_text">Security</p><p class="petals-circle_text">Inclusivity</p><p class="petals-circle_text">Bias</p></div></div><div class="petals-row is-bottom"><div class="petal inverse"><div class="petal-texts_wrapper"><p class="petal-text">Corporate within certain hours</p><p class="petal-text">Very high convinces fees</p><p class="petal-text">They can be hacked by Anyone</p><p class="petal-text">Time taking</p><p class="petal-text">Can’t Able To Think About them.</p></div></div><div class="petal"><div class="petal-texts_wrapper"><p class="petal-text">Corporate 24/7 without interruption</p><p class="petal-text">fast understanding and cheap fees</p><p class="petal-text">she’s already hacked by me.</p><p class="petal-text">Already Taken OurMy time.</p><p class="petal-text">Thinking About Her As Always Day or Night Always comes in mind</p></div></div></div></div></div></div></div>
         <div id="metrics" class="section"><div class="container"><div class="headline-wrapper"><div class="vertical-gap-8"><p data-animation="text-reveal" class="eyebrow-heading">Metrics</p><h2 data-animation="text-reveal">What does the numbers say</h2></div></div><div class="numbers_wrapper"><div class="numbers_column"><div data-animation="text-reveal" class="numbers_text">4.09+ Mln</div><p data-animation="text-reveal">Women are in the World</p></div><div class="numbers_column"><div data-animation="text-reveal" class="numbers_text">~ONLY 1</div><p data-animation="text-reveal">I have eye on</p></div><div class="numbers_column"><div data-animation="text-reveal" class="numbers_text">4.09 MLN $+</div><p data-animation="text-reveal">She’s for me</p></div><div class="numbers_line-wrapper"><div class="numbers_line"></div><div class="numbers_line-overlay"></div></div><div class="numbers_line-wrapper is-right"><div class="numbers_line"></div><div class="numbers_line-overlay"></div></div></div></div></div>
         <div id="guide" class="section"><div class="horizontal-sticky"><div class="container"><div class="headline-wrapper"><div class="vertical-gap-8"><p data-animation="text-reveal" class="eyebrow-heading">Wanna know</p><h2 data-animation="text-reveal">How good she’s</h2></div></div><div class="stages_wrapper"><div class="stages_track"><div class="stages_progress"><div class="stages_progress-fill"></div><div class="stages_progress-section"><div class="stages_progress-circle is-1"><div class="stages_progress-circle_inner"></div></div></div><div class="stages_progress-section"><div class="stages_progress-circle is-2"><div class="stages_progress-circle_inner"></div></div></div><div class="stages_progress-section"><div class="stages_progress-circle is-3"><div class="stages_progress-circle_inner"></div></div></div><div class="stages_progress-section"><div class="stages_progress-circle is-4"><div class="stages_progress-circle_inner"></div></div></div><div class="stages_progress-overaly"></div></div><div class="stages_section"><h3>Inform yourself</h3><p>She is not just any girl — she’s the one who changes everything. Before you love her, understand her heart, her dreams, and her little fears. She deserves someone who sees her completely and still chooses her every day.</p></div><div class="stages_section"><h3>Choose your way</h3><p>Choose to hold her hand on good days and wipe her tears on bad ones. Choose her laughter over the noise of the world. Choose her again and again, even when life gets hard.</p></div><div class="stages_section"><h3>Spend Time With Her</h3><p>Time with her is not just time — it’s a memory being built. Listen to her stories, watch the stars with her, make her feel safe. Every second with her is worth more than anything else.</p></div><div class="stages_section"><h3>Get Her Love</h3><p>Her love is not just given, it’s a treasure. Earn it with honesty, protect it with loyalty, and cherish it like it’s the best thing you’ve ever found. Because it is.</p></div></div></div></div></div></div>
-        <div id="options" class="section"><div class="container"><div class="petals-grid"><div class="petals_headline"><div class="vertical-gap-8 align-right"><p data-animation="text-reveal" class="eyebrow-heading">Options</p><h2 data-animation="text-reveal">WHO CAN LOVE HER</h2><div class="max-width-480"><p data-animation="text-reveal">With the magic that is her, everyone will find a way to love her — but I know the best way is mine.</p></div></div></div><div class="petals-grid_item is-1"><div class="petals_grid-item_inner"><h3 data-animation="text-reveal">Individuals</h3><p data-animation="text-reveal">She deserves someone who texts her first, listens to her rants, and makes her feel special every day.</p></div></div><div class="petals-grid_item is-2"><div class="petals_grid-item_inner is-inverse"><h3 data-animation="text-reveal">Friends</h3><p data-animation="text-reveal">They can make her laugh, but only I can make her feel truly loved.</p></div></div><div class="petals-grid_item is-3"><div class="petals_grid_item_inner"><h3 data-animation="text-reveal">Me</h3><p data-animation="text-reveal">I choose to love her the loudest, cheer for her the hardest, and stay by her side the longest.</p></div></div></div></div></div>
+        <div id="options" class="section"><div class="container"><div class="petals-grid"><div class="petals_headline"><div class="vertical-gap-8 align-right"><p data-animation="text-reveal" class="eyebrow-heading">Options</p><h2 data-animation="text-reveal">WHO CAN LOVE HER</h2><div class="max-width-480"><p data-animation="text-reveal">With the magic that is her, everyone will find a way to love her — but I know the best way is mine.</p></div></div></div><div class="petals-grid_item is-1"><div class="petals_grid-item_inner"><h3 data-animation="text-reveal">Individuals</h3><p data-animation="text-reveal">She deserves someone who texts her first, listens to her rants, and makes her feel special every day.</p></div></div><div class="petals-grid_item is-2"><div class="petals_grid-item_inner is-inverse"><h3 data-animation="text-reveal">Friends</h3><p data-animation="text-reveal">They can make her laugh, but only I can make her feel truly loved.</p></div></div><div class="petals-grid_item is-3"><div class="petals_grid-item_inner"><h3 data-animation="text-reveal">Me</h3><p data-animation="text-reveal">I choose to love her the loudest, cheer for her the hardest, and stay by her side the longest.</p></div></div></div></div></div>
         <div class="section is-footer"><div class="container"><div class="footer_wrapper"><div class="footer_top"><div class="vertical-gap-16"><div class="vertical-gap-8 align-left"><p class="eyebrow-heading">dive into the future</p><h2>Start our journey</h2><h2 class="footer_heading">Now!</h2></div><div class="max-width-360"><p>In order to start this beautiful adventure together, all she has to do is say yes to me being by her side forever. Be the first, be my favorite, be my always — step into the future with me.</p></div></div><button type="button" class="button"><div class="button_inner"><p>Click To Play</p></div><div class="glow"></div></button></div><div class="footer_bottom"><p>Created by:</p><a href="https://www.nikkton6.com/" target="_blank" class="eyebrow-heading">N I K</a></div></div><div class="footer_aurora is-blured"><div class="hero_aurora-inner"></div></div><div class="footer_aurora"><div class="hero_aurora-inner"></div></div></div></div>
     </main>
 </div>
@@ -146,174 +149,65 @@
     // ========== Petals Animation (Rotation, Text, and Layout) ========== //
     const comparisonSection = document.querySelector("#comparison");
     if (comparisonSection) {
-      const rotations = 4;
-      const degrees = rotations * 360;
-      comparisonSection.style.height = `${rotations * 100}vh`;
+        const rotations = 4, degrees = 360 * rotations;
+        comparisonSection.style.height = `${100 * rotations}vh`;
 
-      gsap.to(".petals-circle", {
-        rotate: degrees,
-        ease: "none",
-        scrollTrigger: {
-          trigger: comparisonSection,
-          start: "top top",
-          end: "bottom bottom",
-          scrub: true,
-          pin: ".sticky-layout"
-        }
-      });
+        gsap.to(".petals-circle", { rotate: degrees, ease: "none", scrollTrigger: { trigger: comparisonSection, start: "top top", end: "bottom bottom", scrub: true, pin: ".sticky-layout" } });
+        gsap.to(".petals-circle_inner", { rotate: -degrees, ease: "none", scrollTrigger: { trigger: comparisonSection, start: "top top", end: "bottom bottom", scrub: true } });
 
-      gsap.to(".petals-circle_inner", {
-        rotate: -degrees,
-        ease: "none",
-        scrollTrigger: {
-          trigger: comparisonSection,
-          start: "top top",
-          end: "bottom bottom",
-          scrub: true
-        }
-      });
-      
-      const textTimeline = gsap.timeline({
-        scrollTrigger: {
-          trigger: comparisonSection,
-          start: "top top",
-          end: "bottom bottom",
-          scrub: 1 // Using a scrub value can help smooth things out
-        }
-      });
-      
-      const circleTexts = gsap.utils.toArray(".petals-circle_text");
-      const petalTextWrappers = document.querySelectorAll(".petal-texts_wrapper");
-      const numItems = circleTexts.length;
-
-      circleTexts.forEach((text, i) => {
-        // Position for the start of the current slide's animation
-        const startTime = i / numItems;
-        // Position for the end of the current slide's animation
-        const endTime = (i + 1) / numItems;
-
-        // Fade in the current item
-        textTimeline.fromTo(text, 
-            { opacity: 0, scale: 0.8 }, 
-            { opacity: 1, scale: 1, ease: "power1.out" }, 
-            startTime
-        );
+        const textTimeline = gsap.timeline({ scrollTrigger: { trigger: comparisonSection, start: "top top", end: "bottom bottom", scrub: 1.5 } });
+        const circleTexts = gsap.utils.toArray(".petals-circle_text");
+        const petalTextWrappers = document.querySelectorAll(".petal-texts_wrapper");
         
-        // Fade out the current item before the next one starts
-        if (i < numItems - 1) { // Don't fade out the last item
-            textTimeline.to(text, 
-                { opacity: 0, scale: 0.8, ease: "power1.in" }, 
-                endTime - (0.1 / numItems) // Start fading out a bit before the end of its slot
-            );
-        }
-
-        // Animate corresponding petal texts
-        petalTextWrappers.forEach(wrapper => {
-            const petalTexts = gsap.utils.toArray(wrapper.querySelectorAll('.petal-text'));
-            if(petalTexts[i]) {
-                textTimeline.fromTo(petalTexts[i], 
-                    { opacity: 0, y: "1rem" },
-                    { opacity: 1, y: "0rem", ease: "power1.out" }, 
-                    startTime
-                );
-                if (i < numItems - 1) {
-                    textTimeline.to(petalTexts[i], 
-                        { opacity: 0, y: "-1rem", ease: "power1.in" }, 
-                        endTime - (0.1 / numItems)
-                    );
+        // ** THIS IS THE CORRECTED LOGIC **
+        for (let i = 1; i < circleTexts.length; i++) {
+            // Fade OUT the previous set of texts
+            textTimeline.to(circleTexts[i - 1], { opacity: 0, scale: 0.8, duration: 0.2, ease: "power1.in" });
+            petalTextWrappers.forEach(wrapper => {
+                const petalTexts = gsap.utils.toArray(wrapper.querySelectorAll('.petal-text'));
+                if (petalTexts[i - 1]) {
+                    textTimeline.to(petalTexts[i - 1], { opacity: 0, y: "-1rem", duration: 0.2, ease: "power1.in" }, "<");
                 }
-            }
-        });
-      });
+            });
 
-
-      const petalsFadeIn = gsap.timeline({
-        scrollTrigger: {
-          trigger: comparisonSection,
-          scrub: true,
-          start: "top bottom",
-          end: "top top"
+            // Fade IN the current set of texts
+            textTimeline.to(circleTexts[i], { opacity: 1, scale: 1, duration: 0.2, ease: "power1.out" });
+             petalTextWrappers.forEach(wrapper => {
+                const petalTexts = gsap.utils.toArray(wrapper.querySelectorAll('.petal-text'));
+                if (petalTexts[i]) {
+                    textTimeline.to(petalTexts[i], { opacity: 1, y: "0rem", duration: 0.2, ease: "power1.out" }, "<");
+                }
+            });
         }
-      });
-      petalsFadeIn
-        .from(".petals-row.is-top .petal:first-child", { opacity: 0, x: "-5rem", y: "-2rem" })
-        .from(".petals-row.is-top .petal:last-child", { opacity: 0, x: "5rem", y: "-2rem" }, "<")
-        .from(".petals-row.is-bottom .petal:first-child", { opacity: 0, x: "-5rem", y: "2rem" }, "<")
-        .from(".petals-row.is-bottom .petal:last-child", { opacity: 0, x: "5rem", y: "2rem" }, "<");
+
+        const petalsFadeIn = gsap.timeline({ scrollTrigger: { trigger: comparisonSection, scrub: true, start: "top bottom", end: "top top" } });
+        petalsFadeIn.from(".petals-row.is-top .petal:first-child", { opacity: 0, x: "-5rem", y: "-2rem" }).from(".petals-row.is-top .petal:last-child", { opacity: 0, x: "5rem", y: "-2rem" }, "<").from(".petals-row.is-bottom .petal:first-child", { opacity: 0, x: "-5rem", y: "2rem" }, "<").from(".petals-row.is-bottom .petal:last-child", { opacity: 0, x: "5rem", y: "2rem" }, "<");
         
-      // THIS IS THE MISSING PIECE OF LOGIC TO FADE THE PETALS OUT
-      const petalsFadeOut = gsap.timeline({
-        scrollTrigger: {
-          trigger: comparisonSection,
-          scrub: true,
-          start: "bottom 90%", // Start fading when 90% of the section is scrolled
-          end: "bottom center"
-        }
-      });
-      petalsFadeOut
-        .to(".petals-layout", { opacity: 0 });
+        const petalsFadeOut = gsap.timeline({ scrollTrigger: { trigger: comparisonSection, scrub: true, start: "bottom 90%", end: "bottom center" } });
+        petalsFadeOut.to(".petals-layout", { opacity: 0 });
     }
-
 
     // ========== Stages Scroll + Guide Section Scroll Animations ========== //
     const guideSection = document.querySelector("#guide");
     if (guideSection) {
-      const isMobile = window.innerWidth <= 991;
-      const track = document.querySelector(".stages_track");
-      const progressOverlay = document.querySelector(".stages_progress-overaly");
-
+      const isMobile = window.innerWidth <= 991, track = document.querySelector(".stages_track"), progressOverlay = document.querySelector(".stages_progress-overaly");
       if (isMobile) {
-        gsap.fromTo(progressOverlay, { height: "100%" }, {
-          height: "0%",
-          ease: "none",
-          scrollTrigger: {
-            trigger: guideSection,
-            start: "top center",
-            end: "bottom center",
-            scrub: true
-          }
-        });
+        gsap.fromTo(progressOverlay, { height: "100%" }, { height: "0%", ease: "none", scrollTrigger: { trigger: guideSection, start: "top center", end: "bottom center", scrub: true } });
       } else {
         const scrollDistance = track.scrollWidth - track.parentElement.offsetWidth;
         guideSection.style.height = `${scrollDistance + window.innerHeight}px`;
-
-        ScrollTrigger.create({
-          trigger: guideSection,
-          start: "top top",
-          end: () => `+=${scrollDistance}`,
-          pin: ".horizontal-sticky",
-          scrub: true,
-          animation: gsap.to(track, {
-            x: -scrollDistance,
-            ease: "none"
-          }),
-        });
-
-        ScrollTrigger.create({
-          trigger: guideSection,
-          start: "top top",
-          end: () => `+=${scrollDistance}`,
-          scrub: true,
-          animation: gsap.fromTo(progressOverlay, { width: "100%" }, { width: "0%", ease: "none" }),
-        });
+        ScrollTrigger.create({ trigger: guideSection, start: "top top", end: () => `+=${scrollDistance}`, pin: ".horizontal-sticky", scrub: true, animation: gsap.to(track, { x: -scrollDistance, ease: "none" }) });
+        ScrollTrigger.create({ trigger: guideSection, start: "top top", end: () => `+=${scrollDistance}`, scrub: true, animation: gsap.fromTo(progressOverlay, { width: "100%" }, { width: "0%", ease: "none" }) });
       }
-
       let lastIsMobile = isMobile;
-      window.addEventListener("resize", () => {
-        const nowIsMobile = window.innerWidth <= 991;
-        if (nowIsMobile !== lastIsMobile) {
-          window.location.reload();
-        }
-      });
+      window.addEventListener("resize", () => { const nowIsMobile = window.innerWidth <= 991; nowIsMobile !== lastIsMobile && window.location.reload(); });
     }
-      
+
     // ========== Glow Button & Card Animation ========== //
     document.querySelectorAll('[glow-border="wrapper"]').forEach(wrapper => {
       wrapper.addEventListener("mousemove", function (event) {
         this.querySelectorAll('[glow-border="card"]').forEach(card => {
-          const rect = card.getBoundingClientRect();
-          const x = event.clientX - rect.left;
-          const y = event.clientY - rect.top;
+          const rect = card.getBoundingClientRect(), x = event.clientX - rect.left, y = event.clientY - rect.top;
           card.style.setProperty("--cursor-x", `${x}px`);
           card.style.setProperty("--cursor-y", `${y}px`);
         });
